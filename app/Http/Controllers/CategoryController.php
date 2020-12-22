@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
@@ -15,6 +16,7 @@ class CategoryController extends Controller
     public function index()
     {
         //
+        $accountId = Auth::user()->account_id;
         $categories = Category::all();
         return view('categories.index', compact('categories'));
     }
