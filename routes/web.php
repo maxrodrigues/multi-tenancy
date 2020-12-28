@@ -22,3 +22,21 @@ Route::resource('/categories', 'CategoryController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::domain('{tenant}.son.laravel')->group(function(){
+    Route::get('/test', function(){
+        return 'Hello Word';
+    });
+
+    Route::prefix('/admin')->group(function(){
+        Route::get('/', function(){
+            return 'Admin';
+        });
+    });
+
+    Route::prefix('/app')->group(function(){
+        Route::get('/', function(){
+            return 'App Multi Tenancy';
+        });
+    });
+});
