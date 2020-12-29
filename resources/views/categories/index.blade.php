@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="m-2 row">
-            <a name="" id="" class="btn btn-primary" href="{{ route('categories.create') }}" role="button">
+            <a name="" id="" class="btn btn-primary" href="{{ routeTenant('categories.create') }}" role="button">
                 Cadastrar nova
             </a>
         </div>
@@ -32,7 +32,7 @@
                                         <td class="align-middle">{{ $category->name }}</td>
                                         <td>
                                             <a name="" id="" class="btn btn-primary"
-                                                href="{{ route('categories.edit', ['category' => $category->id]) }}"
+                                                href="{{ routeTenant('categories.edit', ['category' => $category->id]) }}"
                                                 role="button">Editar</a>
                                         </td>
                                     </tr>

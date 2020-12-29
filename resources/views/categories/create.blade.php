@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="m-2 row">
-            <a name="" id="" class="btn btn-primary" href="{{ route('categories.index') }}" role="button">
+            <a name="" id="" class="btn btn-primary" href="{{ routeTenant('categories.index') }}" role="button">
                 Voltar
             </a>
         </div>
@@ -13,7 +13,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Title</h4>
                     </div>
-                    <form action="{{ route('categories.store') }}" method="post">
+                    <form action="{{ routeTenant('categories.store') }}" method="post">
                         @csrf
                         @method('post')
                         <div class="card-body">

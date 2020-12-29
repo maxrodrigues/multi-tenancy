@@ -44,7 +44,7 @@ class CategoryController extends Controller
             'name' => $request->name
         ]);
 
-        return redirect(route('categories.index'));
+        return redirect(routeTenant('categories.index'));
     }
 
     /**
@@ -64,9 +64,8 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Category $category)
+    public function edit($account, Category $category)
     {
-        $category;
         return view('categories.edit', compact('category'));
     }
 
@@ -77,12 +76,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update($account, Request $request, Category $category)
     {
         $category->name = $request->name;
         $category->save();
 
-        return redirect(route('categories.index'));
+        return redirect(routeTenant('categories.index'));
     }
 
     /**
@@ -91,7 +90,7 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    public function destroy($account, Category $category)
     {
         //
     }

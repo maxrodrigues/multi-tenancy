@@ -3,7 +3,7 @@
 @section('content')
     <div class="container">
         <div class="m-2 row">
-            <a name="" id="" class="btn btn-primary" href="{{ route('categories.index') }}" role="button">
+            <a name="" id="" class="btn btn-primary" href="{{ routeTenant('categories.index') }}" role="button">
                 Voltar
             </a>
         </div>
@@ -13,7 +13,7 @@
                     <div class="card-header">
                         <h4 class="card-title">Title</h4>
                     </div>
-                    <form action="{{ route('categories.update', ['category' => $category->id]) }}" method="post">
+                    <form action="{{ routeTenant('categories.update', ['category' => $category->id]) }}" method="post">
                         @csrf
                         @method('put')
                         <div class="card-body">

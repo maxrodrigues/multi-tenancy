@@ -13,6 +13,13 @@ class AccountTableSeeder extends Seeder
     public function run()
     {
         //
-        factory(Account::class, 2)->create();
+        #factory(Account::class, 2)->create();
+        factory(Account::class, 1)->create([
+            'subdomain' => 'client1'
+        ]);
+
+        factory(Account::class, 1)->create([
+            'subdomain' => 'client2'
+        ]);
     }
 }

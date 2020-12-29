@@ -13,36 +13,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::resource('/categories', 'CategoryController');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-
 $appUrl = config('app.url');
 $domain = parse_url($appUrl)['host'];
 $tenantParam = config('tenant.route_param');
 
 
-Route::domain("{{$tenantParam}}.son.laravel")->group(function(){
+Route::domain("{{$tenantParam}}.$domain")->middleware('tenant')->group(function(){
+
+    Auth::routes();
+
     Route::get('/test', function(){
         return 'Hello Word';
     });
 
-    Route::prefix('/admin')->group(function(){
+    Route::prefix('/admin')->middleware('auth:web')->group(function(){
         Route::get('/', function(){
             return 'Admin';
         });
     });
 
-    Route::prefix('/app')->group(function(){
+    Route::prefix('/app')->middleware('auth:web_tenants')->group(function(){
+        Route::resource('/categories', 'CategoryController');
         Route::get('/', function(){
             return 'App Multi Tenancy';
         });
     });
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Route::get('/home', 'HomeController@index')->name('home');
 });

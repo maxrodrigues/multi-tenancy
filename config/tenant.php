@@ -6,6 +6,6 @@ return [
     'foreign_key' => 'account_id',
     'route_param' => 'account',
     'subdomains_except' => [
-        'master'
+        'admin'
     ]
 ];

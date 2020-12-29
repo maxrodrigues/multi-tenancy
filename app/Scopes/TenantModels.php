@@ -2,6 +2,7 @@
 
 namespace App\Scopes;
 use App\Scopes\TenantScope;
+use App\Tenant\TenantManager;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 
@@ -11,9 +12,10 @@ trait TenantModels{
         static::addGlobalScope(new TenantScope());
 
         static::creating(function(Model $model){
-            if(Auth::user()){
-                $account_id = Auth::user()->account_id;
-                $model->account_id = $account_id;
+            $tenantManager = app(TenantManager::class);
+            if($tenantManager->getTenant()){
+                $accountId = $tenantManager->getTenant()->id;
+                $model->account_id = $accountId;
             }
         });
     }

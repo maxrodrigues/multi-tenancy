@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -14,6 +15,15 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->extend('redirect', function($redirectorOriginal, $app){
+            $redirector = new Redirector($app['url']);
+
+            if(isset($app['session.store'])){
+                $redirector->setSession($app['session.store']);
+            }
+
+            return $redirector;
+        });
     }
 
     /**
