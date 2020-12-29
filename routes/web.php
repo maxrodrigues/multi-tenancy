@@ -23,7 +23,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::domain('{tenant}.son.laravel')->group(function(){
+
+$appUrl = config('app.url');
+$domain = parse_url($appUrl)['host'];
+$tenantParam = config('tenant.route_param');
+
+
+Route::domain("{{$tenantParam}}.son.laravel")->group(function(){
     Route::get('/test', function(){
         return 'Hello Word';
     });
