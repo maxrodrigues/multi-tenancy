@@ -11,8 +11,10 @@ trait TenantModels{
         static::addGlobalScope(new TenantScope());
 
         static::creating(function(Model $model){
-            $account_id = Auth::user()->account_id;
-            $model->account_id = $account_id;
+            if(Auth::user()){
+                $account_id = Auth::user()->account_id;
+                $model->account_id = $account_id;
+            }
         });
     }
 }
